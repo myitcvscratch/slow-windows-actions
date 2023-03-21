@@ -1,0 +1,23 @@
+name: Test
+on:
+  push
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-22.04
+          - ubuntu-20.04
+          - macos-11
+          - macos-12
+          - windows-2022
+          - windows-2019
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repository: cue-lang/cue
+          ref: d16b5758c12d752c439a78f51baabace69268af7
+          fetch-depth: 0
